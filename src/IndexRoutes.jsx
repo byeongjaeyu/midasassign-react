@@ -1,10 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
+import News from "./Pages/News";
+
 const IndexRoutes = () => {
   return (
     <Routes>
-      <Route></Route>
+      <Route path="/news" element={<News />} />
     </Routes>
   );
 };

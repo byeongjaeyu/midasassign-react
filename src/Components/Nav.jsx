@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Container from "./Container";
 import "../css/Nav.css";
 
 const Nav = () => {
@@ -20,23 +21,25 @@ const Nav = () => {
   useEffect(() => {
     let currentLink = document.getElementById(selected);
     if (currentLink) {
-      currentLink.className += " activated";
+      currentLink.className += " onnav";
     }
   }, [selected]);
 
   const activated = (e) => {
     let prevLink = document.getElementById(selected);
     if (e.currentTarget.id !== selected && prevLink) {
-      prevLink.classList.remove("activated");
+      prevLink.classList.remove("onnav");
       setSelected(e.currentTarget.id);
     }
   };
 
   return (
     <div className="navbar">
+        <h1>
       <Link className="nav-link" to="/#" id="nav-home" onClick={activated}>
-        <img className="logo" src="/image/ediyalogo.gif" alt="Idiya" />
+          <img className="logo" src="/image/ediyalogo.gif" alt="Idiya" />
       </Link>
+        </h1>
       <ul className="nav-items">
         <li className="nav-item">
           <Link
@@ -69,7 +72,7 @@ const Nav = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/#" id="nav-news" onClick={activated}>
+          <Link className="nav-link" to="/news" id="nav-news" onClick={activated}>
             이디야 뉴스
           </Link>
         </li>
