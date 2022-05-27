@@ -4,15 +4,14 @@ import Nav from "./Components/Nav";
 
 import Container from "./Components/Container";
 
-
 function App() {
   return (
-    <div className="App">
-      <Container>
-        <Nav />
-      </Container>
+
+    <Container>
+      <Nav />
       <IndexRoutes />
-    </div>
+    </Container>
+
   );
 }
 

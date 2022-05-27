@@ -4,6 +4,16 @@ import Container from "./Container";
 import "../css/Nav.css";
 
 const Nav = () => {
+  const navInfo = 
+    [
+      ["이디야 디자인","design"],
+      ["로그인","login"],
+      ["회원가입","signup"],
+      ["이디야 음료","beverage"],
+      ["이디야 뉴스","news"],
+      ["매장찾기","search"],
+    ]
+  
   const [selected, setSelected] = useState("");
   const url = useLocation();
 
@@ -11,37 +21,50 @@ const Nav = () => {
     if (selected === "") {
       let path = url.pathname.split("/")[1];
       if (path) {
-        setSelected(`nav-${path}`);
+        setSelected(path);
       } else {
-        setSelected("nav-home");
+        setSelected("home");
       }
     }
   }, []);
 
-  useEffect(() => {
-    let currentLink = document.getElementById(selected);
-    if (currentLink) {
-      currentLink.className += " onnav";
-    }
-  }, [selected]);
-
-  const activated = (e) => {
-    let prevLink = document.getElementById(selected);
-    if (e.currentTarget.id !== selected && prevLink) {
-      prevLink.classList.remove("onnav");
-      setSelected(e.currentTarget.id);
-    }
-  };
 
   return (
     <div className="navbar">
-        <h1>
-      <Link className="nav-link" to="/#" id="nav-home" onClick={activated}>
+      <h1>
+        <Link 
+          className={
+            "nav-link" + (selected === "home" ? " onnav" : "")
+          } 
+          to="/#" 
+          id="nav-home"
+          onClick={()=>setSelected("home")}
+        >
           <img className="logo" src="/image/ediyalogo.gif" alt="Idiya" />
-      </Link>
-        </h1>
+        </Link>
+      </h1>
       <ul className="nav-items">
-        <li className="nav-item">
+        {
+          navInfo.map(([title,path],index)=>{
+            console.log(title,path)
+            return (
+              <li className="nav-item" key={index}>
+                <Link
+                  className={
+                    "nav-link" + (selected === path ? " onnav" : "")
+                  }
+                  to={`/${path}`}
+                  id={`nav-${path}`}
+                  onClick={()=>setSelected(path)}
+                >
+                  {title}
+                </Link>
+              </li>
+            )
+          })
+        }
+
+        {/* <li className="nav-item">
           <Link
             className="nav-link"
             to="/#"
@@ -51,6 +74,7 @@ const Nav = () => {
             이디야 디자인
           </Link>
         </li>
+
         <li className="nav-item">
           <Link className="nav-link" to="/#" id="nav-login" onClick={activated}>
             로그인
@@ -72,7 +96,12 @@ const Nav = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/news" id="nav-news" onClick={activated}>
+          <Link
+            className="nav-link"
+            to="/news"
+            id="nav-news"
+            onClick={activated}
+          >
             이디야 뉴스
           </Link>
         </li>
@@ -85,7 +114,7 @@ const Nav = () => {
           >
             매장찾기
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
