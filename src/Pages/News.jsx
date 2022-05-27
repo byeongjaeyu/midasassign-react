@@ -8,16 +8,10 @@ const News = () => {
   const [mode, setMode] = useState("notice");
   return (
     <>
-        <NewsMenu mode={mode} setMode={setMode} />
-        <NewsTitle mode={mode} />
-        {
-            mode==="news" &&
-            <NewsMedia/>
-        }
-        {
-            mode==="award" &&
-            <NewsAward/>
-        }
+      <NewsMenu mode={mode} setMode={setMode} />
+      <NewsTitle mode={mode} />
+      {mode === "news" && <NewsMedia />}
+      {mode === "award" && <NewsAward />}
     </>
   );
 };

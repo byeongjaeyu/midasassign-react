@@ -6,12 +6,10 @@ import Container from "./Components/Container";
 
 function App() {
   return (
-
     <Container>
       <Nav />
       <IndexRoutes />
     </Container>
-
   );
 }
 

@@ -1,8 +1,5 @@
 const NewsAward = () => {
-    return ( 
-        <>
-        </>
-    );
-}
- 
+  return <></>;
+};
+
 export default NewsAward;
