@@ -1,14 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../css/NewsSearch.css";
+import SearchNews from "../hooks/SearchNews";
 
-const NewsSearch = () => {
+const NewsSearch = ({ setNewsList }) => {
   const [mode, setMode] = useState("title");
   const [toggle, setToggle] = useState(false);
   const inputRef = useRef();
   const dropdownRef = useRef(null);
 
-  const search = () => {
+  const search = async () => {
     const keyword = inputRef.current.value;
+
+    SearchNews({
+      keyword: keyword,
+      mode: mode,
+      currentPage: 1,
+    }).then((res) => {
+      setNewsList(res.data);
+    });
   };
 
   useEffect(() => {
