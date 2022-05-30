@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "../css/NewsSearch.css";
 import SearchNews from "../hooks/SearchNews";
 
-const NewsSearch = ({ setNewsList }) => {
+const NewsSearch = ({ setNewsList, setCurrent }) => {
   const [mode, setMode] = useState("title");
   const [toggle, setToggle] = useState(false);
   const inputRef = useRef();
@@ -17,6 +17,10 @@ const NewsSearch = ({ setNewsList }) => {
       currentPage: 1,
     }).then((res) => {
       setNewsList(res.data);
+      setCurrent({
+        keyword:keyword,
+        mode:mode,
+      })
     });
   };
 
