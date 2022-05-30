@@ -1,38 +1,43 @@
-import '../css/NewsTable.css'
+import "../css/NewsTable.css";
 
 const NewsTable = ({ articles }) => {
-  console.log(articles);
   return (
-    <table className="news-container" id="news-container">
+    <table className="news-container">
       <thead>
         <tr>
-          <th>순서</th>
-          <th>본문</th>
-          <th>날짜</th>
+          <th className="news-col-order">순서</th>
+          <th className="news-col-content">본문</th>
+          <th className="news-col-date">날짜</th>
         </tr>
       </thead>
 
       <tbody>
-        {articles.map((article,index) => {
+        {articles.map((article, index) => {
           console.log(article);
           return (
-            <tr key={index}>
-              <td className="news-order">{article.sn}</td>
-              <td className="news-contents">
-                <img src={article.imgSrc} alt="No Image" height="100%" width="auto"/>
+            <tr key={index} className="news-data">
+              <td className="news-data-order">{article.sn}</td>
+              <td className="news-data-content">
+                <img
+                  src={article.imgSrc}
+                  alt="No Image"
+                  height="100%"
+                  width="auto"
+                />
                 <div>
-                    <div className="news-title">{article.title}</div>
-                    <div className="news-content">{article.content}</div>
+                  <div className="news-data-content-title">{article.title}</div>
+                  <div className="news-data-content-description">
+                    {article.content}
+                  </div>
                 </div>
               </td>
-              <td className="news-date">
-                {article.registrationDate.split('T')[0].replace(/-/g,'.')}
+              <td className="news-data-date">
+                {article.registrationDate.split("T")[0].replace(/-/g, ".")}
               </td>
             </tr>
           );
         })}
       </tbody>
-
     </table>
   );
 };

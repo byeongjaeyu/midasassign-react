@@ -9,9 +9,9 @@ import NewsTable from "./NewsTable";
 
 const NewsMedia = () => {
   const [current, setCurrent] = useState({
-    keyword : "",
+    keyword: "",
     mode: "title",
-  })
+  });
   const [newsList, setNewsList] = useState({
     articles: [],
     paging: {
@@ -33,13 +33,10 @@ const NewsMedia = () => {
 
   return (
     <div className="news-media">
-      <NewsSearch 
-        setNewsList={setNewsList} 
-        setCurrent={setCurrent}
-      />
+      <NewsSearch setNewsList={setNewsList} setCurrent={setCurrent} />
       <NewsTable articles={newsList.articles} />
-      <NewsPages 
-        current={current} 
+      <NewsPages
+        current={current}
         paging={newsList.paging}
         setNewsList={setNewsList}
       />

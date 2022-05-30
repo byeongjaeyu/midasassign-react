@@ -41,6 +41,7 @@
 
 .ondropdown {
   display: block;
+  background: #f5f5f5;
 }
 
 .news-search-dropdown-child {

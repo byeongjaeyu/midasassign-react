@@ -1,0 +1,42 @@
+.pages-box {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  height: 32px;
+  width: 100%;
+}
+
+.page-arrow {
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+}
+
+.page-arrow:disabled {
+  cursor: default;
+}
+
+.pagenode {
+  padding-left: 18px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  display: flex;
+  align-items: center;
+}
+
+.pagenode-current {
+  padding-left: 18px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: #24388d;
+  display: flex;
+  align-items: center;
+}

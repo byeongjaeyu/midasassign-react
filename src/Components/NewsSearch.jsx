@@ -18,9 +18,9 @@ const NewsSearch = ({ setNewsList, setCurrent }) => {
     }).then((res) => {
       setNewsList(res.data);
       setCurrent({
-        keyword:keyword,
-        mode:mode,
-      })
+        keyword: keyword,
+        mode: mode,
+      });
     });
   };
 
