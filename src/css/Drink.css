@@ -1,0 +1,28 @@
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  width: 359px;
+  height: 373px;
+  cursor: pointer;
+}
+
+.grid-item img {
+  width: 204px;
+  height: 293px;
+}
+
+.drink-title {
+  text-align: center;
+  font-family: "SpoqaHanSans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #0f0f0f;
+}

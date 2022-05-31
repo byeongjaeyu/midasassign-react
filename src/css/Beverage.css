@@ -1,0 +1,9 @@
+.drinks-container {
+  margin: 30px auto auto auto;
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+  grid-template-rows: 373px 373px;
+  grid-template-columns: 359px 359px;
+}

@@ -1,0 +1,92 @@
+.onmodal {
+  overflow: hidden;
+}
+
+.modal-outer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.block {
+  display: block;
+}
+
+.modal {
+  position: fixed;
+  left: calc(50% - 359px / 2);
+  top: calc(50% - 373px / 2);
+  width: 359px;
+  height: 373px;
+  border: 1px solid #cccccc;
+  background: rgba(255, 255, 255);
+  padding: 20px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-exit {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  border: none;
+  background: none;
+  padding: 0px;
+  cursor: pointer;
+}
+
+.modal-head * {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.modal-head-divider {
+  border-bottom: 2px solid #0f0f0f;
+}
+
+.modal .modal-title-en {
+  color: #616161;
+  font-size: 14px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin: auto 42px 10px 20px;
+}
+
+.modal-footer > * {
+  display: flex;
+}
+
+.modal-footer * {
+  font-size: 13px;
+  line-height: 13px;
+}
+
+.modal-footer-detail {
+  width: 60px;
+}
+
+.modal-footer-detail-left > * > * {
+  margin: 5px auto auto auto;
+}
+
+.modal-footer-detail-right > * > * {
+  margin: 5px auto auto auto;
+}
+
+.modal-footer-detail-right::before {
+  content: "";
+  margin-top: 5px;
+  margin-right: 16px;
+  border-left: 1px solid #000000;
+  width: 100%;
+}
