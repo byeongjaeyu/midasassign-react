@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Footer from "../Components/Footer";
 import NewsAward from "../Components/NewsAward";
 import NewsMedia from "../Components/NewsMedia";
 import NewsMenu from "../Components/NewsMenu";
@@ -12,6 +13,7 @@ const News = () => {
       <NewsTitle mode={mode} />
       {mode === "news" && <NewsMedia />}
       {mode === "award" && <NewsAward />}
+      <Footer />
     </>
   );
 };
