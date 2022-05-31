@@ -7,3 +7,9 @@
   grid-template-rows: 373px 373px;
   grid-template-columns: 359px 359px;
 }
+
+.gototop {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}

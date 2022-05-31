@@ -41,6 +41,10 @@ const Beverage = () => {
     }
   };
 
+  const gotoTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   useEffect(() => {
     if (paging.currentIndex + 1 <= paging.lastIndex) {
       window.addEventListener("scroll", handleScroll);
@@ -87,6 +91,12 @@ const Beverage = () => {
       {modalInfo[0] && (
         <DrinkModal modalInfo={modalInfo} setModalInfo={setModalInfo} />
       )}
+      <img
+        class="gototop"
+        id="gototop"
+        src="../image/gototop.png"
+        onClick={gotoTop}
+      />
     </Container>
   );
 };

@@ -12,6 +12,7 @@
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.3);
+  z-index: 9998;
 }
 
 .block {
@@ -30,6 +31,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 9999;
 }
 
 .modal-exit {
