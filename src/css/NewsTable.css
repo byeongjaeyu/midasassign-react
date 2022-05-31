@@ -40,13 +40,11 @@ thead tr {
   height: 90px;
 }
 
-.news-data td {
-  height: 90px;
-}
-
 .news-data-content {
   display: flex;
   align-items: center;
+  vertical-align: top;
+  padding-top: 15px;
 }
 
 .news-data-content > img {
@@ -66,6 +64,8 @@ thead tr {
   letter-spacing: -0.02em;
   color: #24388d;
   text-align: center;
+  vertical-align: top;
+  padding-top: 12px;
 }
 
 .news-data-content-title {
@@ -105,4 +105,5 @@ thead tr {
   color: #24388d;
   text-align: center;
   vertical-align: top;
+  padding-top: 12px;
 }
