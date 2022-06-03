@@ -1,0 +1,22 @@
+.home-articles{
+    width:405px;
+    height:70px;
+    background: #24388D;
+    padding : 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.home-article{
+    color: #FEFEFE;
+    display: flex;
+    justify-content: space-between;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    margin-top:3px;
+    line-height: 150%;
+    letter-spacing: -0.02em;
+}

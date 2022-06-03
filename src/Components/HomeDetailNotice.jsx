@@ -13,7 +13,7 @@ const HomeDetailNotice = () => {
     },
   ]);
   const [currentNoticeIndex, setCurrentNoticeIndex] = useState(0);
-  const [payload, loading] = useAxios("http://localhost:6120/api/notice/");
+  const [payload, loading] = useAxios({url:"http://localhost:6120/api/notice/"});
 
   useEffect(() => {
     if (payload) {

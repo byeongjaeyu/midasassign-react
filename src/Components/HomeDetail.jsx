@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../css/HomeDetail.css";
 import Container from "./Container";
+import HomeDetailNews from "./HomeDetailNews";
 import HomeDetailNotice from "./HomeDetailNotice";
 import HomeDetailYoutube from "./HomeDetailYoutube";
 const HomeDetail = () => {
@@ -17,6 +18,7 @@ const HomeDetail = () => {
           <HomeDetailYoutube />
           <div>
             <HomeDetailNotice />
+            <HomeDetailNews/>
           </div>
         </div>
       </Container>
