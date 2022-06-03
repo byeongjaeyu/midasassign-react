@@ -20,33 +20,25 @@ const Beverage = () => {
     lastIndex: 0,
   });
 
-  const [loadStart,setLoadStart] = useState(false);
+  const [loadStart, setLoadStart] = useState(false);
 
-  const {payload, loading} = useLoadBeverage(loadStart,paging.currentIndex);
+  const { payload, loading } = useLoadBeverage(loadStart, paging.currentIndex);
 
-  useEffect(()=>{
-    console.log(payload);
-    if(payload){
+  useEffect(() => {
+    if (payload) {
       setBeverages(beverages.concat(payload.drink));
       setPaging(payload.paging);
       setLoadStart(false);
     }
-  },[payload])
+  }, [payload]);
 
-  const handleScroll = async() => {
+  const handleScroll = async () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight * 0.9) {
-      console.log('!!')
+      console.log("!!");
       setLoadStart(true);
-      // console.log('!!')
-      // const {payload, loading} = await loadBeverage({
-      //   start: paging.currentIndex,
-      //   size: 10,
-      // })
-      // setBeverages(beverages.concat(payload.drink));
-      // console.log(paging);
     }
   };
 
@@ -65,11 +57,11 @@ const Beverage = () => {
     // setPaging(payload.paging);
     if (paging.currentIndex + 1 <= paging.lastIndex) {
       window.addEventListener("scroll", handleScroll);
-      console.log('이벤트 등록')
+      console.log("이벤트 등록");
     }
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      console.log('이벤트 삭제')
+      console.log("이벤트 삭제");
     };
   }, [beverages]);
 
@@ -87,6 +79,11 @@ const Beverage = () => {
 
   return (
     <Container>
+      {loading && (
+        <div className={"onload-outer" + loading ? " block" : ""}>
+          <div className="onload-ring" />
+        </div>
+      )}
       <div className="drinks-container">
         {beverages.map((beverage, index) => {
           return (

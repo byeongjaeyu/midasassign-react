@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../css/NewsMedia.css";
 
-import SearchNews from "../hooks/SearchNews";
+import useSearchNews from "../hooks/useSearchNews";
 import NewsPages from "./NewsPages";
 
 import NewsSearch from "./NewsSearch";
@@ -22,16 +22,32 @@ const NewsMedia = () => {
     },
   });
 
+  const [loadStart, setLoadStart] = useState(false);
+
+  const { payload, loading } = useSearchNews(loadStart, {
+    keyword: currentSearch.keyword,
+    keywordType: currentSearch.keywordType,
+  });
+
   useEffect(() => {
     // async await 가독성.
-    SearchNews({
-      keyword: currentSearch.keyword,
-      keywordType: currentSearch.keywordType,
-      currentPage: 1,
-    }).then((res) => {
-      setNewsList(res.data);
-    });
+    setLoadStart(true);
+    // SearchNews({
+    //   keyword: currentSearch.keyword,
+    //   keywordType: currentSearch.keywordType,
+    //   currentPage: 1,
+    // }).then((res) => {
+    //   setNewsList(res.data);
+    // });
   }, []);
+
+  useEffect(() => {
+    // console.log('payload!',payload);
+    if (payload) {
+      setNewsList(payload);
+      setLoadStart(false);
+    }
+  }, [payload]);
 
   return (
     <div className="news-media">

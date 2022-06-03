@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import SearchNews from "../hooks/SearchNews";
+import useSearchNews from "../hooks/useSearchNews";
 import "../css/NewsPages.css";
 
 const NewsPages = ({
@@ -11,6 +11,13 @@ const NewsPages = ({
   const [pageInfo, setPageInfo] = useState({
     start: 1,
     size: 1,
+  });
+  const [loadStart, setLoadStart] = useState(false);
+  const [selectPageNumber, setSelectPageNumber] = useState(1);
+  const { payload, loading } = useSearchNews(loadStart, {
+    keyword,
+    keywordType,
+    currentPage: selectPageNumber,
   });
 
   useEffect(() => {
@@ -27,14 +34,16 @@ const NewsPages = ({
     });
   }, [currentPage, blockSize, lastPage]);
 
+  useEffect(() => {
+    if (payload) {
+      setNewsList(payload);
+      setLoadStart(false);
+    }
+  }, [payload]);
+
   const loadPage = (pageNumber) => {
-    SearchNews({
-      keyword,
-      keywordType,
-      currentPage: pageNumber,
-    }).then((res) => {
-      setNewsList(res.data);
-    });
+    setSelectPageNumber(pageNumber);
+    setLoadStart(true);
   };
 
   const jumpup = () => {

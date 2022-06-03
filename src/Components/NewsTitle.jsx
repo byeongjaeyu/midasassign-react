@@ -4,7 +4,7 @@ import Container from "./Container";
 
 const NewsTitle = (props) => {
   //구조분해할당.. => 구조분해 할당 선언해놓고 사용.
-  const {title, subTitle} = json.data[props.mode]
+  const { title, subTitle } = json.data[props.mode];
   return (
     <div className="news-title">
       <div>

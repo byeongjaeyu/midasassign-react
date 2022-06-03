@@ -1,28 +1,48 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../css/NewsSearch.css";
-import SearchNews from "../hooks/SearchNews";
+import useSearchNews from "../hooks/useSearchNews";
 
 const NewsSearch = ({ setNewsList, setCurrentSearch }) => {
+  // inputRef 사용x => keyword state로 관리
   const [keyword, setKeyword] = useState("");
+  // 변수명 => api에 맞춰서 변경
   const [keywordType, setKeywordType] = useState("title");
   const [toggle, setToggle] = useState(false);
+  const [loadStart, setLoadStart] = useState(false);
   const dropdownRef = useRef(null);
+  const { payload, loading } = useSearchNews(loadStart, {
+    keyword,
+    keywordType,
+  });
 
-  const search = async () => {
+  const search = () => {
+    setLoadStart(true);
     //inputRef 사용X => keyword state로 관리
-    SearchNews({
-      // 이름 => api에 맞춰서 변경
-      keyword,
-      keywordType,
-      currentPage: 1,
-    }).then((res) => {
-      setNewsList(res.data);
+    // SearchNews({
+    //   // 이름 => api에 맞춰서 변경
+    //   keyword,
+    //   keywordType,
+    //   currentPage: 1,
+    // }).then((res) => {
+    //   console.log(res.data);
+    //   setNewsList(res.data);
+    //   setCurrentSearch({
+    //     keyword,
+    //     keywordType,
+    //   });
+    // });
+  };
+
+  useEffect(() => {
+    if (payload) {
+      setNewsList(payload);
       setCurrentSearch({
         keyword,
         keywordType,
       });
-    });
-  };
+      setLoadStart(false);
+    }
+  }, [payload]);
 
   useEffect(() => {
     const onClick = (e) => {
