@@ -8,9 +8,10 @@ import NewsSearch from "./NewsSearch";
 import NewsTable from "./NewsTable";
 
 const NewsMedia = () => {
-  const [current, setCurrent] = useState({
+  // 다른곳에서 참조를 했을때도 알 수 있게 변수 이름. => currentSearch로 변경
+  const [currentSearch, setCurrentSearch] = useState({
     keyword: "",
-    mode: "title",
+    keywordType: "title",
   });
   const [newsList, setNewsList] = useState({
     articles: [],
@@ -22,9 +23,10 @@ const NewsMedia = () => {
   });
 
   useEffect(() => {
+    // async await 가독성.
     SearchNews({
-      keyword: current.keyword,
-      mode: current.mode,
+      keyword: currentSearch.keyword,
+      keywordType: currentSearch.keywordType,
       currentPage: 1,
     }).then((res) => {
       setNewsList(res.data);
@@ -33,10 +35,13 @@ const NewsMedia = () => {
 
   return (
     <div className="news-media">
-      <NewsSearch setNewsList={setNewsList} setCurrent={setCurrent} />
+      <NewsSearch
+        setNewsList={setNewsList}
+        setCurrentSearch={setCurrentSearch}
+      />
       <NewsTable articles={newsList.articles} />
       <NewsPages
-        current={current}
+        currentSearch={currentSearch}
         paging={newsList.paging}
         setNewsList={setNewsList}
       />

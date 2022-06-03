@@ -13,25 +13,26 @@ const Nav = () => {
   ];
 
   const [selected, setSelected] = useState("");
+  // useLocation 변수이름.
   const url = useLocation();
 
   useEffect(() => {
-    if (selected === "") {
-      let path = url.pathname.split("/")[1];
-      if (path) {
-        setSelected(path);
-      } else {
-        setSelected("home");
-      }
+    let path = url.pathname.split("/")[1];
+    if (path) {
+      setSelected(path);
+    } else {
+      setSelected("home");
     }
   }, []);
 
   return (
     <div className="navbar">
       <h1>
+        {/* onnav 적용 생각. */}
         <Link
           className={"nav-link" + (selected === "home" ? " onnav" : "")}
-          to="/#"
+          // /# 잘못사용
+          to="/"
           id="nav-home"
           onClick={() => setSelected("home")}
         >
@@ -39,12 +40,13 @@ const Nav = () => {
         </Link>
       </h1>
       <ul className="nav-items">
+        {/* https://ko.reactjs.org/docs/lists-and-keys.html */}
         {navInfo.map(([title, path], index) => {
           return (
             <li className="nav-item" key={index}>
               <Link
                 className={"nav-link" + (selected === path ? " onnav" : "")}
-                to={`/${path}`}
+                to={`${path}`}
                 id={`nav-${path}`}
                 onClick={() => setSelected(path)}
               >

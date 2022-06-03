@@ -17,6 +17,7 @@ const HomeMain = () => {
         <div className="home-title2">
           늘 당신곁에, 이디야 커피의 새로운 메뉴를 맛보세요.
         </div>
+        {/* button이 맞나 */}
         <button className="home-button" onClick={goHome}>
           메뉴 보기
         </button>

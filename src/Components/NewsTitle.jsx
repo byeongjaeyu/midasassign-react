@@ -3,6 +3,8 @@ import json from "../Json/NewsTitle.json";
 import Container from "./Container";
 
 const NewsTitle = (props) => {
+  //구조분해할당.. => 구조분해 할당 선언해놓고 사용.
+  const {title, subTitle} = json.data[props.mode]
   return (
     <div className="news-title">
       <div>
@@ -12,9 +14,9 @@ const NewsTitle = (props) => {
             src="/image/slash.svg"
             alt="/"
           />
-          {json.data[props.mode].title}
+          {title}
         </h2>
-        <h3 className="news-title-sub">{json.data[props.mode].subTitle}</h3>
+        <h3 className="news-title-sub">{subTitle}</h3>
       </div>
     </div>
   );

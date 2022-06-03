@@ -2,25 +2,35 @@ import { useState, useEffect } from "react";
 import SearchNews from "../hooks/SearchNews";
 import "../css/NewsPages.css";
 
-const NewsPages = ({ current, paging, setNewsList }) => {
-  const [pageInfo, setPageInfo] = useState([1, 1]);
+const NewsPages = ({
+  currentSearch: { keyword, keywordType },
+  paging: { currentPage, blockSize, lastPage },
+  setNewsList,
+}) => {
+  // 뭐가 뭔지 모르겠다.. => key, value 명시적이게 object로 변경
+  const [pageInfo, setPageInfo] = useState({
+    start: 1,
+    size: 1,
+  });
 
   useEffect(() => {
     const pageStart =
-      parseInt(Number(paging.currentPage - 1) / paging.blockSize) *
-        paging.blockSize +
-      1;
-    let pageEnd = pageStart + paging.blockSize - 1;
-    if (pageEnd > paging.lastPage) {
-      pageEnd = paging.lastPage;
+      parseInt(Number(currentPage - 1) / blockSize) * blockSize + 1;
+    // 한줄로..
+    let pageEnd = pageStart + blockSize - 1;
+    if (pageEnd > lastPage) {
+      pageEnd = lastPage;
     }
-    setPageInfo([pageStart, pageEnd - pageStart + 1]);
-  }, [paging]);
+    setPageInfo({
+      start: pageStart,
+      size: pageEnd - pageStart + 1,
+    });
+  }, [currentPage, blockSize, lastPage]);
 
   const loadPage = (pageNumber) => {
     SearchNews({
-      keyword: current.keyword,
-      mode: current.mode,
+      keyword,
+      keywordType,
       currentPage: pageNumber,
     }).then((res) => {
       setNewsList(res.data);
@@ -29,24 +39,18 @@ const NewsPages = ({ current, paging, setNewsList }) => {
 
   const jumpup = () => {
     const nextPage =
-      parseInt(
-        (Number(paging.currentPage) + paging.blockSize - 1) / paging.blockSize
-      ) *
-        paging.blockSize +
+      parseInt((Number(currentPage) + blockSize - 1) / blockSize) * blockSize +
       1;
-    if (nextPage <= paging.lastPage) {
+    if (nextPage <= lastPage) {
       loadPage(nextPage);
     }
   };
 
   const jumpdown = () => {
     const nextPage =
-      parseInt(
-        (Number(paging.currentPage) - paging.blockSize - 1) / paging.blockSize
-      ) *
-        paging.blockSize +
-      paging.blockSize;
-    if (nextPage >= paging.blockSize) {
+      parseInt((Number(currentPage) - blockSize - 1) / blockSize) * blockSize +
+      blockSize;
+    if (nextPage >= blockSize) {
       loadPage(nextPage);
     }
   };
@@ -54,44 +58,37 @@ const NewsPages = ({ current, paging, setNewsList }) => {
   return (
     <div className="pages-box">
       <button
-        class="page-arrow"
+        className="page-arrow"
         id="page-arrow-down"
         onClick={jumpdown}
-        disabled={
-          parseInt(Number(paging.currentPage - 1) / paging.blockSize) === 0
-        }
+        disabled={parseInt(Number(currentPage - 1) / blockSize) === 0}
       >
         <img src="../image/newsButtonPrev.svg" />
       </button>
-      {[...Array(pageInfo[1])].map((n, index) => {
+      {[...Array(pageInfo.size)].map((_, index) => {
+        // 중복된 변수 => 선언 후 사용
+        const pageIndex = pageInfo.start + index;
         return (
           <span
             className={
-              "pagenode" +
-              (Number(paging.currentPage) === pageInfo[0] + index
-                ? "-current"
-                : "")
+              "pagenode" + (Number(currentPage) === pageIndex ? "-current" : "")
             }
-            id={pageInfo[0] + index}
             key={index}
-            onClick={(e) => loadPage(e.target.id)}
+            onClick={() => loadPage(pageIndex)}
           >
-            {pageInfo[0] + index}
+            {pageIndex}
           </span>
         );
       })}
       <button
-        class="page-arrow"
+        className="page-arrow"
         id="page-arrow-up"
         onClick={jumpup}
         disabled={
-          parseInt(
-            (Number(paging.currentPage) + paging.blockSize - 1) /
-              paging.blockSize
-          ) *
-            paging.blockSize +
+          parseInt((Number(currentPage) + blockSize - 1) / blockSize) *
+            blockSize +
             1 >
-          paging.lastPage
+          lastPage
         }
       >
         <img src="../image/newsButtonNext.svg" />

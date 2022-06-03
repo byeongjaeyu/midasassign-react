@@ -2,7 +2,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import "../css/DrinkModal.css";
 
-const DrinkModal = ({ modalInfo, setModalInfo }) => {
+const DrinkModal = ({
+  modalInfo: { isModalOpen, modalSelected },
+  setModalInfo,
+}) => {
   const [modalDetail, setModalDetail] = useState({
     title: "",
     englishTitle: "",
@@ -22,11 +25,11 @@ const DrinkModal = ({ modalInfo, setModalInfo }) => {
   };
 
   useEffect(() => {
-    if (modalInfo[1] !== 0) {
+    if (modalSelected !== 0) {
       axios
         .get("http://localhost:6120/api/drink/detail/", {
           params: {
-            sn: Number(modalInfo[1]),
+            sn: Number(modalSelected),
           },
         })
         .then((res) => {
@@ -34,25 +37,27 @@ const DrinkModal = ({ modalInfo, setModalInfo }) => {
         });
     }
 
-    if (modalInfo[0]) {
+    if (isModalOpen) {
       document.addEventListener("click", closeModal);
     }
     return () => {
       document.removeEventListener("click", closeModal);
     };
-  }, [modalInfo]);
+  }, [isModalOpen]);
   return (
     <div>
+      {/* onclick */}
+      {/* props drilling */}
       <div
-        className={"modal-outer" + (modalInfo[0] ? " block" : "")}
+        className={"modal-outer" + (isModalOpen ? " block" : "")}
         id="wrapper"
-      ></div>
+      />
       <div className="modal" id="modal">
         <img
           className="modal-exit"
           id="modal-exit"
           src="../image/modalExit.svg"
-          alt="X"
+          alt="modal exit"
           onClick={() => {
             setModalInfo([false, 0]);
           }}

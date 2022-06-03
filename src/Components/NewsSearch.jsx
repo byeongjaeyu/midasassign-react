@@ -2,34 +2,31 @@ import React, { useState, useEffect, useRef } from "react";
 import "../css/NewsSearch.css";
 import SearchNews from "../hooks/SearchNews";
 
-const NewsSearch = ({ setNewsList, setCurrent }) => {
-  const [mode, setMode] = useState("title");
+const NewsSearch = ({ setNewsList, setCurrentSearch }) => {
+  const [keyword, setKeyword] = useState("");
+  const [keywordType, setKeywordType] = useState("title");
   const [toggle, setToggle] = useState(false);
-  const inputRef = useRef();
   const dropdownRef = useRef(null);
 
   const search = async () => {
-    const keyword = inputRef.current.value;
-
+    //inputRef 사용X => keyword state로 관리
     SearchNews({
-      keyword: keyword,
-      mode: mode,
+      // 이름 => api에 맞춰서 변경
+      keyword,
+      keywordType,
       currentPage: 1,
     }).then((res) => {
       setNewsList(res.data);
-      setCurrent({
-        keyword: keyword,
-        mode: mode,
+      setCurrentSearch({
+        keyword,
+        keywordType,
       });
     });
   };
 
   useEffect(() => {
     const onClick = (e) => {
-      if (
-        dropdownRef.current !== null &&
-        !dropdownRef.current.contains(e.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setToggle(!toggle);
       }
     };
@@ -37,7 +34,7 @@ const NewsSearch = ({ setNewsList, setCurrent }) => {
     if (toggle) {
       setTimeout(() => {
         window.addEventListener("click", onClick);
-      }, 100);
+      }, 0);
     }
 
     return () => {
@@ -46,36 +43,42 @@ const NewsSearch = ({ setNewsList, setCurrent }) => {
   }, [toggle]);
 
   return (
+    // 아이디 필요 없음. => 삭제
     <div className="news-search">
-      <div className="news-search-select-box" id="select-box">
-        <span className="news-search-select-title" id="select_mode">
-          {mode === "title" ? "제목" : "내용"}
+      <div className="news-search-select-box">
+        <span className="news-search-select-title">
+          {/* 스위치-케이스같은 구문을 사용해라 => 확장성 고려해서 변경 */}
+          {
+            {
+              title: "제목",
+              content: "내용",
+            }[keywordType]
+          }
         </span>
         <button
           className="news-search-select-button"
-          id="select-button"
           onClick={() => setToggle(!toggle)}
         >
           {toggle ? "▲" : "▼"}
         </button>
       </div>
 
+      {/* 부모 위치 고려 */}
       <div
         className={
           "news-search-dropdown" + (toggle ? " ondropdown" : " ondropdown1")
         }
-        id="select-dropdown"
         ref={dropdownRef}
       >
+        {/*  중복 방지 */}
         <div
           className={
             "news-search-dropdown-child" +
-            (mode === "title" ? " ondropdown-mode" : "")
+            (keywordType === "title" ? " ondropdown-mode" : "")
           }
-          id="title"
           mode="title"
           onClick={() => {
-            setMode("title");
+            setKeywordType("title");
             setToggle(false);
           }}
         >
@@ -84,12 +87,11 @@ const NewsSearch = ({ setNewsList, setCurrent }) => {
         <div
           className={
             "news-search-dropdown-child" +
-            (mode === "content" ? " ondropdown-mode" : "")
+            (keywordType === "content" ? " ondropdown-mode" : "")
           }
-          id="content"
           mode="content"
           onClick={() => {
-            setMode("content");
+            setKeywordType("content");
             setToggle(false);
           }}
         >
@@ -101,15 +103,16 @@ const NewsSearch = ({ setNewsList, setCurrent }) => {
         <input
           type="text"
           className="news-search-input"
-          id="search-input"
-          ref={inputRef}
           onKeyDown={(e) => {
             if (e.code === "Enter" || e.code === "NumpadEnter") {
               search();
             }
           }}
+          onChange={(e) => {
+            setKeyword(e.target.value);
+          }}
         />
-        <span className="news-search-icon" id="search_icon" onClick={search}>
+        <span className="news-search-icon" onClick={search}>
           <img src="../image/search.svg" />
         </span>
       </div>

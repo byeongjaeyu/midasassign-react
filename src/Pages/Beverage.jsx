@@ -1,44 +1,60 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import useLoadBeverage from "../hooks/useLoadBeverage";
+import React, { useState, useEffect, useCallback } from "react";
 import Container from "../Components/Container";
 import Drink from "../Components/Drink";
 import DrinkModal from "../Components/DrinkModal";
 import "../css/Beverage.css";
 
-const size = 10;
-
-const LoadBeverage = async ({ start, size }) => {
-  console.log(start, size);
-  const response = await axios.get("http://localhost:6120/api/drink/list/", {
-    params: {
-      start: start,
-      size: size,
-    },
-  });
-  return response.data;
-};
+// const size = process.env.REACT_APP_DRINK_LOAD_VALUE
+// useCallback => hook으로 사용.
 
 const Beverage = () => {
-  const [modalInfo, setModalInfo] = useState([false, 0]);
+  // object 남들이 봐도 이해되게 => 변경
+  const [modalInfo, setModalInfo] = useState({
+    isModalOpen: false,
+    modalSelected: 0,
+  });
   const [beverages, setBeverages] = useState([]);
   const [paging, setPaging] = useState({
     currentIndex: 1,
     lastIndex: 0,
   });
 
-  const handleScroll = () => {
+  const [loadStart,setLoadStart] = useState(false);
+
+  const {payload, loading} = useLoadBeverage(loadStart,paging.currentIndex);
+
+  useEffect(()=>{
+    console.log(payload);
+    if(payload){
+      setBeverages(beverages.concat(payload.drink));
+      setPaging(payload.paging);
+      setLoadStart(false);
+    }
+  },[payload])
+
+  const handleScroll = async() => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight * 0.9) {
-      LoadBeverage({
-        start: paging.currentIndex,
-        size: size,
-      }).then((res) => {
-        setBeverages(beverages.concat(res.drink));
-        setPaging(res.paging);
-      });
+      console.log('!!')
+      setLoadStart(true);
+      // console.log('!!')
+      // const {payload, loading} = await loadBeverage({
+      //   start: paging.currentIndex,
+      //   size: 10,
+      // })
+      // setBeverages(beverages.concat(payload.drink));
+      // console.log(paging);
     }
+  };
+
+  const openModal = (index) => {
+    setModalInfo({
+      isModalOpen: true,
+      modalSelected: index,
+    });
   };
 
   const gotoTop = () => {
@@ -46,16 +62,19 @@ const Beverage = () => {
   };
 
   useEffect(() => {
+    // setPaging(payload.paging);
     if (paging.currentIndex + 1 <= paging.lastIndex) {
       window.addEventListener("scroll", handleScroll);
+      console.log('이벤트 등록')
     }
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      console.log('이벤트 삭제')
     };
   }, [beverages]);
 
   useEffect(() => {
-    if (modalInfo[0]) {
+    if (modalInfo.isModalOpen) {
       document.body.className += " onmodal";
     } else {
       document.body.classList.remove("onmodal");
@@ -63,13 +82,7 @@ const Beverage = () => {
   }, [modalInfo]);
 
   useEffect(() => {
-    LoadBeverage({
-      start: 1,
-      size: size,
-    }).then((res) => {
-      setBeverages(res.drink);
-      setPaging(res.paging);
-    });
+    setLoadStart(true);
   }, []);
 
   return (
@@ -79,8 +92,9 @@ const Beverage = () => {
           return (
             <div
               key={index}
+              // 일관성.
               onClick={() => {
-                setModalInfo([true, index + 1]);
+                openModal(index + 1);
               }}
             >
               <Drink data={beverage} />
@@ -88,13 +102,14 @@ const Beverage = () => {
           );
         })}
       </div>
-      {modalInfo[0] && (
+      {modalInfo.isModalOpen && (
         <DrinkModal modalInfo={modalInfo} setModalInfo={setModalInfo} />
       )}
       <img
-        class="gototop"
+        className="gototop"
         id="gototop"
         src="../image/gototop.png"
+        alt=""
         onClick={gotoTop}
       />
     </Container>
