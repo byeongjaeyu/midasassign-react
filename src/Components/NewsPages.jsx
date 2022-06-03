@@ -24,7 +24,7 @@ const NewsPages = ({
     const pageStart =
       parseInt(Number(currentPage - 1) / blockSize) * blockSize + 1;
     // 한줄로.. => Math.min 사용
-    let pageEnd = Math.min(pageStart + blockSize - 1,lastPage);
+    let pageEnd = Math.min(pageStart + blockSize - 1, lastPage);
 
     setPageInfo({
       start: pageStart,

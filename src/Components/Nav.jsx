@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 //classnames 라이브러리 적용
-import classNames from 'classnames';
+import classNames from "classnames";
 import "../css/Nav.css";
 
 const Nav = () => {
@@ -47,9 +47,7 @@ const Nav = () => {
             <li className="nav-item" key={index}>
               <Link
                 // className={"nav-link" + (selected === path ? " onnav" : "")}
-                className={
-                  classNames('nav-link',{'onnav':selected===path})
-                }
+                className={classNames("nav-link", { onnav: selected === path })}
                 to={`${path}`}
                 onClick={() => setSelected(path)}
               >
