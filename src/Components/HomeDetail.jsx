@@ -18,7 +18,7 @@ const HomeDetail = () => {
           <HomeDetailYoutube />
           <div>
             <HomeDetailNotice />
-            <HomeDetailNews/>
+            <HomeDetailNews />
           </div>
         </div>
       </Container>

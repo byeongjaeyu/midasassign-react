@@ -3,7 +3,9 @@ import useAxios from "../hooks/useAxios";
 import "../css/HomeDetailYoutube.css";
 const HomeDetailYoutube = () => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
-  const [payload, loading] = useAxios({url:"http://localhost:6120/api/intro/"});
+  const [payload, loading] = useAxios({
+    url: "http://localhost:6120/api/intro/",
+  });
   useEffect(() => {
     if (payload) {
       const youtubeData = payload.replace(
