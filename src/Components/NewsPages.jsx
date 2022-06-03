@@ -23,11 +23,9 @@ const NewsPages = ({
   useEffect(() => {
     const pageStart =
       parseInt(Number(currentPage - 1) / blockSize) * blockSize + 1;
-    // 한줄로..
-    let pageEnd = pageStart + blockSize - 1;
-    if (pageEnd > lastPage) {
-      pageEnd = lastPage;
-    }
+    // 한줄로.. => Math.min 사용
+    let pageEnd = Math.min(pageStart + blockSize - 1,lastPage);
+
     setPageInfo({
       start: pageStart,
       size: pageEnd - pageStart + 1,
@@ -70,6 +68,7 @@ const NewsPages = ({
         className="page-arrow"
         id="page-arrow-down"
         onClick={jumpdown}
+        // default => not-allowed
         disabled={parseInt(Number(currentPage - 1) / blockSize) === 0}
       >
         <img src="../image/newsButtonPrev.svg" />

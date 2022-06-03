@@ -36,8 +36,8 @@ const Beverage = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight >= scrollHeight * 0.9) {
-      console.log("!!");
+    if (scrollTop + clientHeight >= scrollHeight * 0.95) {
+      // console.log("!!");
       setLoadStart(true);
     }
   };
@@ -57,11 +57,11 @@ const Beverage = () => {
     // setPaging(payload.paging);
     if (paging.currentIndex + 1 <= paging.lastIndex) {
       window.addEventListener("scroll", handleScroll);
-      console.log("이벤트 등록");
+      // console.log("이벤트 등록");
     }
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      console.log("이벤트 삭제");
+      // console.log("이벤트 삭제");
     };
   }, [beverages]);
 

@@ -32,17 +32,9 @@ const NewsMedia = () => {
   useEffect(() => {
     // async await 가독성.
     setLoadStart(true);
-    // SearchNews({
-    //   keyword: currentSearch.keyword,
-    //   keywordType: currentSearch.keywordType,
-    //   currentPage: 1,
-    // }).then((res) => {
-    //   setNewsList(res.data);
-    // });
   }, []);
 
   useEffect(() => {
-    // console.log('payload!',payload);
     if (payload) {
       setNewsList(payload);
       setLoadStart(false);

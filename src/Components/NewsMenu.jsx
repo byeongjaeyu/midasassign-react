@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Container from "./Container";
 import "../css/NewsMenu.css";
+import classNames from 'classnames'
 
 const NewsMenu = (props) => {
   const navMenuInfo = [
@@ -22,7 +23,9 @@ const NewsMenu = (props) => {
         return (
           <li
             key={index}
-            className={"menu-item" + (selected === path ? " onmenu" : "")}
+            className={
+              classNames('menu-item',{'onmenu':selected===path})
+            }
             id={path}
             onClick={() => setSelected(path)}
           >

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+//classnames 라이브러리 적용
+import classNames from 'classnames';
 import "../css/Nav.css";
 
 const Nav = () => {
@@ -13,11 +15,11 @@ const Nav = () => {
   ];
 
   const [selected, setSelected] = useState("");
-  // useLocation 변수이름.
-  const url = useLocation();
+  // useLocation 변수이름 => location
+  const location = useLocation();
 
   useEffect(() => {
-    let path = url.pathname.split("/")[1];
+    let path = location.pathname.split("/")[1];
     if (path) {
       setSelected(path);
     } else {
@@ -30,13 +32,12 @@ const Nav = () => {
       <h1>
         {/* onnav 적용 생각. */}
         <Link
-          className={"nav-link" + (selected === "home" ? " onnav" : "")}
-          // /# 잘못사용
+          className={"nav-link"}
           to="/"
           id="nav-home"
           onClick={() => setSelected("home")}
         >
-          <img className="logo" src="/image/ediyalogo.gif" alt="Idiya" />
+          <img className="logo" src="/image/ediyalogo.gif" alt="go to home" />
         </Link>
       </h1>
       <ul className="nav-items">
@@ -45,9 +46,11 @@ const Nav = () => {
           return (
             <li className="nav-item" key={index}>
               <Link
-                className={"nav-link" + (selected === path ? " onnav" : "")}
+                // className={"nav-link" + (selected === path ? " onnav" : "")}
+                className={
+                  classNames('nav-link',{'onnav':selected===path})
+                }
                 to={`${path}`}
-                id={`nav-${path}`}
                 onClick={() => setSelected(path)}
               >
                 {title}

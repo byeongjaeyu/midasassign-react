@@ -12,15 +12,17 @@
   border: none;
   display: flex;
   align-items: center;
-  padding-left: 18px;
+  margin-left: 10px;
+  padding-left: 8px;
 }
 
 .page-arrow:disabled {
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .pagenode {
-  padding-left: 18px;
+  margin-left: 10px;
+  padding-left: 8px;
   cursor: pointer;
   font-size: 12px;
   line-height: 100%;
@@ -30,7 +32,8 @@
 }
 
 .pagenode-current {
-  padding-left: 18px;
+  margin-left: 10px;
+  padding-left: 8px;
   cursor: pointer;
   font-size: 12px;
   line-height: 100%;

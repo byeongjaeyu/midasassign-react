@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-// start 변수명 알수있게 변경 => startIndex
 const useLoadBeverage = (loadStart, startIndex) => {
   const [payload, setPayload] = useState({
     drink: [],
@@ -33,7 +32,6 @@ const useLoadBeverage = (loadStart, startIndex) => {
   };
 
   useEffect(() => {
-    // console.log(start);
     if (loadStart) {
       loadBeverage();
     }
