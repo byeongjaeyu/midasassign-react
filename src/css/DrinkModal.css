@@ -77,11 +77,7 @@
   width: 60px;
 }
 
-.modal-footer-detail-left > * > * {
-  margin: 5px auto auto auto;
-}
-
-.modal-footer-detail-right > * > * {
+.modal-footer-detail{
   margin: 5px auto auto auto;
 }
 
