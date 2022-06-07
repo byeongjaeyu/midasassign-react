@@ -3,7 +3,7 @@ import Container from "./Container";
 import "../css/NewsMenu.css";
 import classNames from "classnames";
 
-const NewsMenu = ({mode, setMode}) => {
+const NewsMenu = ({ mode, setMode }) => {
   const navMenuInfo = [
     ["공지사항", "notice"],
     ["언론 속 이디야", "news"],
@@ -14,12 +14,12 @@ const NewsMenu = ({mode, setMode}) => {
   const [selected, setSelected] = useState("notice");
 
   useEffect(() => {
-    setSelected(mode)
+    setSelected(mode);
   }, [mode]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setMode(selected);
-  },[selected])
+  }, [selected]);
 
   return (
     <ul className="menu">

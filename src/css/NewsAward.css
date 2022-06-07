@@ -1,0 +1,10 @@
+.news-award {
+  width: 100%;
+  background: #f5f5f5;
+  padding-bottom: 25px;
+  padding-top: 47px;
+}
+
+.news-award .news-award-container:last-child {
+  padding-bottom: 37px;
+}

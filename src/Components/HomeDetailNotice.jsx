@@ -29,7 +29,6 @@ const HomeDetailNotice = () => {
   };
 
   const changeNotice = (indexChangeValue) => {
-    console.log(indexChangeValue);
     setCurrentNoticeIndex(currentNoticeIndex + indexChangeValue);
   };
 

@@ -17,20 +17,6 @@ const NewsSearch = ({ setNewsList, setCurrentSearch }) => {
 
   const search = () => {
     setLoadStart(true);
-    //inputRef 사용X => keyword state로 관리
-    // SearchNews({
-    //   // 이름 => api에 맞춰서 변경
-    //   keyword,
-    //   keywordType,
-    //   currentPage: 1,
-    // }).then((res) => {
-    //   console.log(res.data);
-    //   setNewsList(res.data);
-    //   setCurrentSearch({
-    //     keyword,
-    //     keywordType,
-    //   });
-    // });
   };
 
   useEffect(() => {

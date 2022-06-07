@@ -77,6 +77,7 @@ const NewsPages = ({
         // 중복된 변수 => 선언 후 사용
         const pageIndex = pageInfo.start + index;
         return (
+          // padding => padding + margin 변경하여 클릭 접근성
           <span
             className={
               "pagenode" + (Number(currentPage) === pageIndex ? "-current" : "")
