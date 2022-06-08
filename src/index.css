@@ -83,7 +83,6 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -127,4 +126,13 @@ a {
 }
 button {
   padding: 0px;
+}
+
+body {
+  min-width: 1440px;
+}
+
+* {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  font-style: normal;
 }

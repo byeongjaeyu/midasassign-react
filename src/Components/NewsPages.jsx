@@ -70,7 +70,7 @@ const NewsPages = ({
         // default => not-allowed
         disabled={parseInt(Number(currentPage - 1) / blockSize) === 0}
       >
-        <img src="../image/newsButtonPrev.svg" />
+        <img src="../image/newsButtonPrev.svg" alt="previous news" />
       </button>
       {[...Array(pageInfo.size)].map((_, index) => {
         // 중복된 변수 => 선언 후 사용
@@ -99,7 +99,7 @@ const NewsPages = ({
           lastPage
         }
       >
-        <img src="../image/newsButtonNext.svg" />
+        <img src="../image/newsButtonNext.svg" alt="next news" />
       </button>
     </div>
   );

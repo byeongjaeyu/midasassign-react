@@ -20,11 +20,31 @@ const HomeMain = () => {
         <div className="home-button" onClick={goToBeverage}>
           메뉴 보기
         </div>
-        <img className="shake1" src="../image/shake1.png" />
-        <img className="shake1-desc" src="../image/shakedesc1.png" />
-        <img className="shake2" src="../image/shake2.png" />
-        <img className="shake2-desc1" src="../image/shakedesc2.png" />
-        <img className="shake2-desc2" src="../image/shakedesc3.png" />
+        <img
+          className="shake1"
+          src="../image/shake1.png"
+          alt="cheeze shake image"
+        />
+        <img
+          className="shake1-desc"
+          src="../image/shakedesc1.png"
+          alt="cheeze shake description"
+        />
+        <img
+          className="shake2"
+          src="../image/shake2.png"
+          alt="choco and rice shake image"
+        />
+        <img
+          className="shake2-desc1"
+          src="../image/shakedesc2.png"
+          alt="choco shake description"
+        />
+        <img
+          className="shake2-desc2"
+          src="../image/shakedesc3.png"
+          alt="rice shake description"
+        />
       </div>
     </div>
   );

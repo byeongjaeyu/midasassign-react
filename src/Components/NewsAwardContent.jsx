@@ -22,6 +22,7 @@ const NewsAwardContent = ({
             onClick={() => {
               setDetailShow(false);
             }}
+            alt="close award detail"
           />
         ) : (
           <img
@@ -32,16 +33,23 @@ const NewsAwardContent = ({
             onClick={() => {
               setDetailShow(true);
             }}
+            alt="open award detail"
           />
         )}
       </div>
       {detailShow && (
         <div className="award-detail">
-          <img className="detail-image" src={filepath} />
+          <img
+            className="detail-image"
+            src={filepath}
+            alt="award detail image"
+          />
           <p className="detail-description">{description}</p>
           <div className="detail-info">
             <p className="detail-info-title">수상일</p>
-            <p className="detail-info-detail">{date}</p>
+            <p className="detail-info-detail">
+              {date}.{}
+            </p>
           </div>
         </div>
       )}

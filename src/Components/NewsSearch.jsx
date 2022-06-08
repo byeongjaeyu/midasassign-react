@@ -7,7 +7,7 @@ const NewsSearch = ({ setNewsList, setCurrentSearch }) => {
   const [keyword, setKeyword] = useState("");
   // 변수명 => api에 맞춰서 변경
   const [keywordType, setKeywordType] = useState("title");
-  const [toggle, setToggle] = useState(false);
+  const [isOpenDropdown, setIsOpenDropdown] = useState(false);
   const [loadStart, setLoadStart] = useState(false);
   const dropdownRef = useRef(null);
   const { payload, loading } = useSearchNews(loadStart, {
@@ -33,11 +33,11 @@ const NewsSearch = ({ setNewsList, setCurrentSearch }) => {
   useEffect(() => {
     const onClick = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setToggle(!toggle);
+        setIsOpenDropdown(!isOpenDropdown);
       }
     };
 
-    if (toggle) {
+    if (isOpenDropdown) {
       setTimeout(() => {
         window.addEventListener("click", onClick);
       }, 0);
@@ -46,10 +46,9 @@ const NewsSearch = ({ setNewsList, setCurrentSearch }) => {
     return () => {
       window.removeEventListener("click", onClick);
     };
-  }, [toggle]);
+  }, [isOpenDropdown]);
 
   return (
-    // 아이디 필요 없음. => 삭제
     <div className="news-search">
       <div className="news-search-select-box">
         <span className="news-search-select-title">
@@ -63,46 +62,43 @@ const NewsSearch = ({ setNewsList, setCurrentSearch }) => {
         </span>
         <button
           className="news-search-select-button"
-          onClick={() => setToggle(!toggle)}
+          onClick={() => setIsOpenDropdown(!isOpenDropdown)}
         >
-          {toggle ? "▲" : "▼"}
+          {isOpenDropdown ? "▲" : "▼"}
         </button>
       </div>
 
       {/* 부모 위치 고려 */}
       <div
         className={
-          "news-search-dropdown" + (toggle ? " ondropdown" : " ondropdown1")
+          "news-search-dropdown" +
+          (isOpenDropdown ? " ondropdown" : " ondropdown1")
         }
         ref={dropdownRef}
       >
         {/*  중복 방지 */}
-        <div
-          className={
-            "news-search-dropdown-child" +
-            (keywordType === "title" ? " ondropdown-mode" : "")
-          }
-          mode="title"
-          onClick={() => {
-            setKeywordType("title");
-            setToggle(false);
-          }}
-        >
-          제목
-        </div>
-        <div
-          className={
-            "news-search-dropdown-child" +
-            (keywordType === "content" ? " ondropdown-mode" : "")
-          }
-          mode="content"
-          onClick={() => {
-            setKeywordType("content");
-            setToggle(false);
-          }}
-        >
-          내용
-        </div>
+        {["title", "content"].map((type) => {
+          return (
+            <div
+              className={
+                "news-search-dropdown-child" +
+                (keywordType === type ? " ondropdown-mode" : "")
+              }
+              mode={type}
+              onClick={() => {
+                setKeywordType(type);
+                setIsOpenDropdown(false);
+              }}
+            >
+              {
+                {
+                  title: "제목",
+                  content: "내용",
+                }[type]
+              }
+            </div>
+          );
+        })}
       </div>
 
       <div className="news-search-input-box">
