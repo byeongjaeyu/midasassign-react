@@ -13,10 +13,11 @@ const NewsTable = ({ articles }) => {
 
       <tbody>
         {articles.map((article, index) => {
+          console.log(article);
           /* 구조분해 할당 */
           const { sn, imgSrc, content, registrationDate, title } = article;
           return (
-            <tr key={index} className="news-data">
+            <tr key={article.sn} className="news-data">
               <td className="news-data-order">{sn}</td>
               <td className="news-data-content">
                 <img src={imgSrc} alt="No Image" height="100%" width="auto" />

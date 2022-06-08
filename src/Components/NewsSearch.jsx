@@ -119,7 +119,7 @@ const NewsSearch = ({ setNewsList, setCurrentSearch }) => {
           }}
         />
         <span className="news-search-icon" onClick={search}>
-          <img src="../image/search.svg" />
+          <img src="../image/search.svg" alt="search" />
         </span>
       </div>
     </div>

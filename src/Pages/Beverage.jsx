@@ -85,7 +85,7 @@ const Beverage = () => {
         {beverages.map((beverage, index) => {
           return (
             <div
-              key={index}
+              key={beverage.title}
               // 일관성.
               onClick={() => {
                 openModal(index + 1);
@@ -101,7 +101,6 @@ const Beverage = () => {
       )}
       <img
         className="gototop"
-        id="gototop"
         src="../image/gototop.png"
         alt=""
         onClick={gotoTop}

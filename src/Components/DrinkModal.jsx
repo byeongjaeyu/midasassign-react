@@ -19,7 +19,7 @@ const DrinkModal = ({
   });
 
   const closeModal = () => {
-      setModalInfo([false, 0]);
+    setModalInfo([false, 0]);
   };
 
   useEffect(() => {
@@ -74,15 +74,9 @@ const DrinkModal = ({
               <div className="modal-footer-detail">단백질</div>
             </div>
             <div className="modal-footer-detail-left-val">
-              <div className="modal-footer-detail" id="cal">
-                {modalDetail.calorie}
-              </div>
-              <div className="modal-footer-detail" id="sugar">
-                {modalDetail.sugars}
-              </div>
-              <div className="modal-footer-detail" id="protein">
-                {modalDetail.protein}
-              </div>
+              <div className="modal-footer-detail">{modalDetail.calorie}</div>
+              <div className="modal-footer-detail">{modalDetail.sugars}</div>
+              <div className="modal-footer-detail">{modalDetail.protein}</div>
             </div>
           </div>
           <div className="modal-footer-detail-right">
@@ -92,15 +86,11 @@ const DrinkModal = ({
               <div className="modal-footer-detail">카페인</div>
             </div>
             <div className="modal-footer-detail-right-val">
-              <div className="modal-footer-detail" id="fat">
+              <div className="modal-footer-detail">
                 {modalDetail.saturatedFat}
               </div>
-              <div className="modal-footer-detail" id="na">
-                {modalDetail.natrium}
-              </div>
-              <div className="modal-footer-detail" id="caffeine">
-                {modalDetail.caffeine}
-              </div>
+              <div className="modal-footer-detail">{modalDetail.natrium}</div>
+              <div className="modal-footer-detail">{modalDetail.caffeine}</div>
             </div>
           </div>
         </div>

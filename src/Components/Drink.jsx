@@ -1,6 +1,6 @@
 import "../css/Drink.css";
 
-const Drink = ({ data: { sn, title, imgSrc } }) => {
+const Drink = ({ data: { title, imgSrc } }) => {
   return (
     <div className="drink grid-item">
       <img className="drink img" src={imgSrc} />

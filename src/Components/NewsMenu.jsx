@@ -26,9 +26,8 @@ const NewsMenu = ({ mode, setMode }) => {
       {navMenuInfo.map(([title, path], index) => {
         return (
           <li
-            key={index}
+            key={path}
             className={classNames("menu-item", { onmenu: selected === path })}
-            id={path}
             onClick={() => setSelected(path)}
           >
             {title}
