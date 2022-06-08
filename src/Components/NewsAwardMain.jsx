@@ -9,7 +9,7 @@ const NewsAwardMain = ({ awards }) => {
       </div>
       <div className="award-contents">
         {awards.map((award) => {
-          return <NewsAwardContent {...award} />;
+          return <NewsAwardContent {...award} key={award.date}/>;
         })}
       </div>
     </div>

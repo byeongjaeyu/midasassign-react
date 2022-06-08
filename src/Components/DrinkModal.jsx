@@ -18,10 +18,8 @@ const DrinkModal = ({
     caffeine: "",
   });
 
-  const closeModal = (e) => {
-    if (e.target.id === "wrapper") {
+  const closeModal = () => {
       setModalInfo([false, 0]);
-    }
   };
 
   useEffect(() => {
@@ -36,21 +34,13 @@ const DrinkModal = ({
           setModalDetail(res.data.detail);
         });
     }
-
-    if (isModalOpen) {
-      document.addEventListener("click", closeModal);
-    }
-    return () => {
-      document.removeEventListener("click", closeModal);
-    };
   }, [isModalOpen]);
   return (
     <div>
       {/* onclick */}
-      {/* props drilling */}
       <div
         className={"modal-outer" + (isModalOpen ? " block" : "")}
-        id="wrapper"
+        onClick={closeModal}
       />
       <div className="modal" id="modal">
         <img

@@ -66,7 +66,6 @@ const NewsPages = ({
     <div className="pages-box">
       <button
         className="page-arrow"
-        id="page-arrow-down"
         onClick={jumpdown}
         // default => not-allowed
         disabled={parseInt(Number(currentPage - 1) / blockSize) === 0}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const HomeMain = () => {
   const navigate = useNavigate();
-  const goHome = () => {
+  const goToBeverage = () => {
     navigate("/beverage");
   };
   return (
@@ -17,10 +17,9 @@ const HomeMain = () => {
         <div className="home-title2">
           늘 당신곁에, 이디야 커피의 새로운 메뉴를 맛보세요.
         </div>
-        {/* button이 맞나 */}
-        <button className="home-button" onClick={goHome}>
+        <div className="home-button" onClick={goToBeverage}>
           메뉴 보기
-        </button>
+        </div>
         <img className="shake1" src="../image/shake1.png" />
         <img className="shake1-desc" src="../image/shakedesc1.png" />
         <img className="shake2" src="../image/shake2.png" />

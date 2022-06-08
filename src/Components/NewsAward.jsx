@@ -33,7 +33,7 @@ const NewsAward = () => {
       {awardData.length !== 0 &&
         awardData.map((awards) => {
           return (
-            <div className="news-award-container">
+            <div className="news-award-container" key={awards[0].date}>
               <Container>
                 <NewsAwardMain awards={awards} />
               </Container>

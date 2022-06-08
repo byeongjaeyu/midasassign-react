@@ -54,14 +54,11 @@ const Beverage = () => {
   };
 
   useEffect(() => {
-    // setPaging(payload.paging);
     if (paging.currentIndex + 1 <= paging.lastIndex) {
       window.addEventListener("scroll", handleScroll);
-      // console.log("이벤트 등록");
     }
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      // console.log("이벤트 삭제");
     };
   }, [beverages]);
 

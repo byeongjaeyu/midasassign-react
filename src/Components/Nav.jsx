@@ -25,7 +25,7 @@ const Nav = () => {
     } else {
       setSelected("home");
     }
-  }, []);
+  }, [location]);
 
   return (
     <div className="navbar">
@@ -42,11 +42,10 @@ const Nav = () => {
       </h1>
       <ul className="nav-items">
         {/* https://ko.reactjs.org/docs/lists-and-keys.html */}
-        {navInfo.map(([title, path], index) => {
+        {navInfo.map(([title, path]) => {
           return (
-            <li className="nav-item" key={index}>
+            <li className="nav-item" key={path}>
               <Link
-                // className={"nav-link" + (selected === path ? " onnav" : "")}
                 className={classNames("nav-link", { onnav: selected === path })}
                 to={`${path}`}
                 onClick={() => setSelected(path)}

@@ -28,7 +28,7 @@ const HomeDetailNews = () => {
         {payload &&
           payload.articles.slice(0, 2).map((article) => {
             return (
-              <div className="articles-content">
+              <div className="articles-content" key={article.sn}>
                 <span>{article.title}</span>
                 <span>
                   {article.registrationDate.split("T")[0].replace(/-/g, ".")}
